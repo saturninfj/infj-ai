@@ -20,7 +20,7 @@ Your Computer / Phone / Tablet
 1. **Blocks Intrusive Ads:** Filters out ad servers and unwanted tracking scripts automatically.
 2. **Hides Your Web Activity:** Encrypts your DNS lookups using NextDNS (Profile 2161aa) so internet providers cannot log your browsing history.
 3. **Zero-Downtime Backup:** If the primary encrypted DNS server slows down, your system automatically switches to a local backup resolver (`127.0.0.1:5335`) so your connection never drops.
-4. **Outbound VPN Egress (Layer 4):** Supports WireGuard (`wg0`) outbound VPN tunneling. Place your provider's `.conf` file at `/etc/wireguard/wg0.conf` to route all outbound egress through a private VPN endpoint.
+4. **Outbound VPN Egress (Layer 4):** Supports WireGuard (`wg0`) outbound VPN tunneling. Place your provider's `.conf` file at `/etc/wireguard/wg0.conf` to route all outbound egress through a private VPN endpoint. Compare open, privacy-tested VPN providers at **[vpn.techlore.tech](https://vpn.techlore.tech/)**.
 
 ---
 

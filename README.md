@@ -60,6 +60,7 @@ curl -fsSL https://raw.githubusercontent.com/saturninfj/infj-ai/main/modules/01-
 * **Stops Intrusive Ads and Trackers:** Automatically blocks unwanted advertisement servers and data collectors before they reach your screen.
 * **Locks Your Browsing Lookups:** Encrypts your DNS requests using NextDNS (Profile 2161aa) so your internet provider cannot log the websites you visit.
 * **Automatic Failover:** If the primary encrypted server experiences latency, your system instantly switches to a local backup resolver (`127.0.0.1:5335`) so your internet never disconnects.
+* **Commercial VPN Egress (Layer 4):** Supports outbound WireGuard VPN tunneling (`/etc/wireguard/wg0.conf`). To compare top-rated, privacy-tested VPN providers, check **[vpn.techlore.tech](https://vpn.techlore.tech/)**.
 
 ---
 
