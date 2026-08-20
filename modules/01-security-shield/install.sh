@@ -13,10 +13,10 @@ echo "[INFJ AI] Initializing Network Security Layer & DNS Shield..."
 echo "[INFJ AI] Primary Upstream: NextDNS Profile ${NEXTDNS_PROFILE}"
 echo "[INFJ AI] Fallback Upstream: Local Unbound Recursive Resolver (127.0.0.1:5335)"
 
-# 1. Install Unbound if missing
+# 1. Install Unbound & WireGuard if missing
 if ! command -v unbound >/dev/null 2>&1; then
     echo "[INFJ AI] Installing Unbound package..."
-    sudo apt-get update -qq && sudo apt-get install -y -qq unbound
+    sudo apt-get update -qq && sudo apt-get install -y -qq unbound wireguard resolvconf
 fi
 
 # 2. Configure Unbound on Port 5335
@@ -104,6 +104,15 @@ EOF
     sudo sysctl -p /etc/sysctl.d/99-tailscale.conf > /dev/null 2>&1 || true
     sudo tailscale set --advertise-exit-node > /dev/null 2>&1 || true
     echo "[INFJ AI] Tailscale exit node advertised successfully."
+fi
+
+# 6. Check for WireGuard VPN Egress Config
+if [ -f /etc/wireguard/wg0.conf ]; then
+    echo "[INFJ AI] WireGuard egress configuration detected at /etc/wireguard/wg0.conf."
+    sudo systemctl enable --now wg-quick@wg0 || true
+    echo "[INFJ AI] WireGuard VPN egress active."
+else
+    echo "[INFJ AI] Note: To attach outbound WireGuard VPN egress (Layer 4), place your config at /etc/wireguard/wg0.conf."
 fi
 
 echo "[INFJ AI] Network Security Layer configuration complete."
