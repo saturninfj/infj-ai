@@ -122,11 +122,16 @@ When setting up INFJ AI on a client or secondary computer:
 
 ---
 
-## INFJcrypto Course Integration
+## INFJcrypto Course & Product Ecosystem Integration
 
-This framework powers the practical lessons in the **INFJcrypto Masterclass**:
+This framework powers the practical curriculum in the **[INFJcrypto Masterclass](https://infjcrypto.com)**:
 * **Module 4:** Building Your Own Agentic Brain OS
 * **Module 5:** Homelab Security & Network Shield Setup
+
+### Related Products & Platforms
+* **Course & Curriculum:** [infjcrypto.com](https://infjcrypto.com)
+* **Autonomous Operations Engine:** [getlyfe.xyz](https://getlyfe.xyz)
+* **Trader Terminal & Macro Intelligence:** [cryptodiary.club](https://cryptodiary.club)
 
 ---
 
