@@ -1,22 +1,24 @@
-# INFJ AI Architecture Portfolio & Master Setup
+# INFJ AI - Sovereign Private AI & Security System
 
-Sovereign AI Compute, Network Security Infrastructure, and Memory Architecture.  
-Developed by **Gin** ([@gin_cryptodiary](https://x.com/gin_cryptodiary) / **INFJcrypto**).
-
----
-
-## Architecture Design Rationale: Single Unified Portfolio vs Micro-Repos
-
-Maintaining a **single unified repository (`saturninfj/infj-ai`)** is superior to creating fragmented sub-repositories. It provides:
-1. **Single Source of Truth:** Clients and students reference one master repository instead of managing multiple decoupled repositories.
-2. **Sequential 3-Phase Guided Deployment:** Installation is structured in strict logical order (Security -> Memory OS -> Agent Skills).
-3. **Master Interactive Orchestrator:** A single 1-line command launches an interactive menu to deploy Phase 1, Phase 2, or the entire stack.
+Build your own private AI assistant, organized digital memory, and personal network shield.  
+Created by **Gin** ([@gin_cryptodiary](https://x.com/gin_cryptodiary) / **INFJcrypto**).
 
 ---
 
-## ⚡ Master 1-Line Setup
+## What is INFJ AI?
 
-Run this command on the target system (macOS / Linux / WSL) to launch the guided interactive installer:
+Most people use AI by typing prompts into a website, copying answers, and pasting them into documents. This manual approach has major drawbacks:
+* **The AI forgets everything** the moment you start a new chat session.
+* **The AI hallucinates** (makes up fake facts) because it has no access to your real notes or files.
+* **Your private data gets sent to public servers** where you lose control over your privacy.
+
+**INFJ AI** solves this by turning your computer into a private, sovereign AI workspace. It organizes your files into a "Second Brain" that your AI assistant can search, read, and cite with 100% accuracy.
+
+---
+
+## ⚡ Quickstart Setup (1-Line Master Command)
+
+Run this single command in your terminal (macOS, Linux, or WSL) to start the step-by-step setup menu:
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/saturninfj/infj-ai/main/setup.sh | bash
@@ -24,130 +26,111 @@ curl -fsSL https://raw.githubusercontent.com/saturninfj/infj-ai/main/setup.sh | 
 
 ---
 
-## 🗺️ Sequential 3-Phase Guided Roadmap
+## 🗺️ Step-by-Step Setup Roadmap
+
+INFJ AI is built in 3 simple phases:
 
 ```text
 +-----------------------------------------------------------------------+
-|  PHASE 1: NETWORK SECURITY LAYER & GATEWAY SHIELD                     |
-|  (Tailscale WireGuard + Pi-hole + NextDNS 2161aa + Unbound Fallback)  |
+|  PHASE 1: DIGITAL BODYGUARD (Network Shield)                          |
+|  Blocks ads, stops trackers, and encrypts your internet connection.   |
 +-----------------------------------v-----------------------------------+
                                     |
 +-----------------------------------v-----------------------------------+
-|  PHASE 2: AGENTIC BRAIN VAULT & MEMORY OS                             |
-|  (Directory Hierarchy + YAML Metadata Standards + GBrain Indexing)    |
+|  PHASE 2: SECOND BRAIN (Memory OS)                                    |
+|  Organizes your notes so your AI assistant never loses context.       |
 +-----------------------------------v-----------------------------------+
                                     |
 +-----------------------------------v-----------------------------------+
-|  PHASE 3: AGENTIC EXECUTION & RAG CITATIONS                           |
-|  (Citations API + Files API + Anti-Hallucination SOP Rules)           |
+|  PHASE 3: AI ASSISTANT (Smart Workflows)                              |
+|  Teaches your AI assistant to search your notes and quote sources.   |
 +-----------------------------------------------------------------------+
 ```
 
 ---
 
-### PHASE 1: Network Security Layer & Gateway Shield
+### PHASE 1: Digital Bodyguard (Network Shield)
 
-Before initializing data or running AI agents, the host system MUST be secured at the network layer.
+Before giving an AI assistant access to your work, protect your computer from internet snooping, intrusive ads, and data leaks.
 
-#### Direct Script Execution
+#### How to Install Phase 1
 ```bash
 curl -fsSL https://raw.githubusercontent.com/saturninfj/infj-ai/main/install-security.sh | bash
 ```
 
-#### Technical Specifications
-```text
-Client Node (Mac Mini / Phone / Tablet / Edge Compute)
-  |--> Layer 1: Zero-Trust WireGuard Mesh (Tailscale 100.x.x.x)
-        |--> Layer 2: Network-Level Sinkhole (Pi-hole Port 53 -> 0.0.0.0)
-              |--> Layer 3: Encrypted DoH & Fast Fallback (dnsproxy Port 5053)
-                    Primary: NextDNS Profile 2161aa DoH
-                    Fallback: Local Unbound Recursive Resolver (127.0.0.1:5335)
-                    |--> Layer 4: Commercial Egress Tunnel (Surfshark WireGuard Table 200)
-```
-
-1. **Primary Upstream:** NextDNS Profile `2161aa` over TLS/DoH for security filtering and telemetry blocking.
-2. **Fallback Resolver:** Local Unbound recursive root resolver (`127.0.0.1:5335`). Automatically handles queries if NextDNS experiences latency or network failure.
-3. **Egress Isolation:** Policy routing via Table 200 isolates commercial VPN egress (Singapore / Indonesia) from Tailscale intranet routing (Table 52).
+#### What Phase 1 Does For You
+1. **Blocks Ads and Trackers:** Automatically filters out malicious domains and telemetry trackers before they reach your browser.
+2. **Encrypts DNS Lookups:** Uses NextDNS (Profile 2161aa) to hide your browsing activity from your internet provider.
+3. **Backup Protection:** If the primary encrypted DNS server slows down, your system instantly switches to a local resolver so your internet connection never drops.
 
 ---
 
-### PHASE 2: Agentic Brain Vault & Memory OS
+### PHASE 2: Second Brain (Memory OS)
 
-Once the host network is hardened, initialize the structured memory architecture.
+Now that your network is secure, set up your organized file system so your AI assistant can read and update your work.
 
-#### Direct Script Execution
+#### How to Install Phase 2
 ```bash
 curl -fsSL https://raw.githubusercontent.com/saturninfj/infj-ai/main/install-brain.sh | bash
 ```
 
-#### Directory Hierarchy
+#### Your Folder Structure
+Your notes are organized into 5 clean folders inside `~/vault`:
+
 ```text
 ~/vault/
-├── Brain/                         # System architecture, SOPs, and handoffs
-│   ├── Architecture/              # System & hardware specifications
-│   ├── Handoffs/                   # Cross-agent state registry
-│   └── SOPs/                      # Standard operating procedures
-├── Memory/                        # Persistent single source of truth (mem-*.md)
-├── Projects/                      # Active project operational files
-├── Research/                      # Grounding data and market intelligence
-└── Daily/                         # Execution logs and transcripts
+├── Brain/         # System rules, guidelines, and handoff notes
+├── Memory/        # Permanent reference notes (your single source of truth)
+├── Projects/      # Active projects you are working on right now
+├── Research/      # Articles, web scrapes, and market research
+└── Daily/         # Daily work logs and transcripts
 ```
 
-#### Metadata Standard (YAML Frontmatter)
-Every markdown document MUST include structured frontmatter for LLM sitemapping:
+#### The Secret to AI Memory: Header Tags
+Every note in your vault includes a short summary header (called YAML Frontmatter) at the top of the file:
 
 ```yaml
 ---
-type: concept | project | reference | sop
-title: "Document Title"
-name: "kebab-case-slug"
-metadata:
-  type: project
-  modified: '2026-08-20T15:40:00.000Z'
-  node_type: memory
-description: >-
-  Concise 1-3 line summary of document purpose and current status.
+type: project
+title: "Launch INFJ Course"
+name: "launch-infj-course"
+description: "Master plan for launching the INFJcrypto AI course."
 ---
 ```
 
----
-
-### PHASE 3: Agentic Execution & RAG Citations
-
-Connect search indexing and citation tools to enforce non-hallucinated AI workflows.
-
-#### Golden Rules of Agentic Execution
-1. **Search First (Anti-Hallucination):** Search local vault memory before generating content.
-2. **Structured Frontmatter (Anti-Drift):** Maintain YAML frontmatter headers on all generated files.
-3. **Strict Citation:** Reference exact file paths and line ranges (`file:///path/to/file#L10-L25`).
-
-#### FTS5 Index Setup
-```bash
-bun install -g gbrain
-gbrain config set vault_path "$HOME/vault"
-gbrain sync --all --no-embed
-```
+**Why this matters:** When you ask your AI assistant a question, it quickly scans these headers first instead of reading through thousands of long files. This keeps answers fast and 100% relevant.
 
 ---
 
-## Client Data Protection Protocol
+### PHASE 3: AI Assistant (Smart Workflows)
 
-When deploying INFJ AI frameworks on client hardware:
-1. **Air-Gapped Vaults:** Client vault directories remain 100% isolated. No private vault files or credentials are copied to client nodes.
-2. **Local FTS Indexing:** Search indexing operates strictly on local client files.
-3. **Isolated API Credentials:** Client nodes execute using dedicated API credentials.
+Teach your AI assistant how to interact with your Second Brain.
+
+#### The 3 Rules for Your AI Assistant
+1. **Search Before Answering:** Your AI must search your local notes first instead of guessing or making up answers.
+2. **Keep Summaries Updated:** When your AI creates a new note, it automatically adds the summary header.
+3. **Always Quote Sources:** Your AI links directly to the exact file and line number it used to answer your question.
 
 ---
 
-## INFJcrypto Masterclass Integration
+## Privacy Protocol for Client Devices
 
-This repository forms the practical implementation backbone for INFJcrypto Masterclass modules:
-- **Module 4:** Building Your Own Agentic Brain OS (Hands-On Memory & RAG Architecture)
-- **Module 5:** Homelab Defense & Security Gateway Engineering
+When setting up INFJ AI on a client or secondary computer:
+1. **100% Private File System:** The client receives their own fresh, empty vault. Your personal files and notes are never copied to client machines.
+2. **Local Processing:** Searching and indexing happens locally on the client machine.
+3. **Separate Credentials:** The client uses their own account keys.
+
+---
+
+## INFJcrypto Course Integration
+
+This framework powers the practical lessons in the **INFJcrypto Masterclass**:
+* **Module 4:** Building Your Own Agentic Brain OS
+* **Module 5:** Homelab Security & Network Shield Setup
 
 ---
 
 ## Author & License
 
-Developed by **Gin** ([@gin_cryptodiary](https://x.com/gin_cryptodiary)).  
+Created by **Gin** ([@gin_cryptodiary](https://x.com/gin_cryptodiary)).  
 Released under the [MIT License](LICENSE).
