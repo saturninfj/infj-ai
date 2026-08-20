@@ -48,7 +48,7 @@ Single source of truth (SSOT) for autonomous AI Agents and human operators.
 All notes MUST contain YAML frontmatter with `type`, `title`, `name`, `metadata`, and `description`.
 EOF
 
-# 3. Agentic Workflow SOP
+# 3. Agentic Workflow SOP & Handoff Templates
 cat << 'EOF' > "${VAULT_DIR}/Brain/SOPs/SOP-Agentic-Workflow.md"
 ---
 type: sop
@@ -77,6 +77,32 @@ Every new markdown file MUST include YAML frontmatter:
 
 ## 3. Strict Citation & Source Attribution
 When quoting vault documents, include page or line references to guarantee transparency.
+EOF
+
+cat << 'EOF' > "${VAULT_DIR}/Brain/Handoffs/handoff_threadspost.md"
+---
+type: sop
+title: "Handoff - Bloomberg & News to Threads Content Pipeline"
+name: "handoff_threadspost"
+metadata:
+  type: sop
+  modified: '2026-08-20T17:45:00.000Z'
+  node_type: handoff
+description: >-
+  4-Stage operational pipeline for transforming raw Bloomberg, crypto, or market
+  news into high-retention Threads long posts.
+---
+
+# Handoff: Bloomberg & News to Threads Content Pipeline
+
+## Purpose
+This document details the 4-Stage Content Transformation System for converting raw news articles or web scrapes into engaging Threads long posts.
+
+## Pipeline Architecture
+1. **Stage 1 (Ingest):** Articles from any news portal / custom source saved to `~/vault/Research/`.
+2. **Stage 2 (4-Question Filter):** What happened -> Why -> Who wins/loses -> Next domino.
+3. **Stage 3 (Copywriting Engine):** Formatted with client brand voice, pattern interrupt hook, and `\n\n` double spacing.
+4. **Stage 4 (Output):** Drafts saved to `~/vault/Projects/Threads-Drafts/`.
 EOF
 
 # 4. Version Control Setup
