@@ -94,4 +94,16 @@ sudo systemctl enable --now dnsproxy
 sudo systemctl restart dnsproxy
 echo "[INFJ AI] dnsproxy service configured and active on port 5053."
 
+# 5. Tailscale IP Forwarding & Exit Node Advertisement
+if command -v tailscale >/dev/null 2>&1; then
+    echo "[INFJ AI] Enabling IPv4/IPv6 forwarding for Tailscale exit node..."
+    sudo tee /etc/sysctl.d/99-tailscale.conf > /dev/null << 'EOF'
+net.ipv4.ip_forward = 1
+net.ipv6.conf.all.forwarding = 1
+EOF
+    sudo sysctl -p /etc/sysctl.d/99-tailscale.conf > /dev/null 2>&1 || true
+    sudo tailscale set --advertise-exit-node > /dev/null 2>&1 || true
+    echo "[INFJ AI] Tailscale exit node advertised successfully."
+fi
+
 echo "[INFJ AI] Network Security Layer configuration complete."
