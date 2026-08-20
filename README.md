@@ -1,65 +1,86 @@
-# INFJ AI Portfolio & Architecture Framework
+# INFJ AI Architecture Portfolio & Master Setup
 
-Sovereign AI Compute, Memory Architecture, and Network Security Infrastructure.  
+Sovereign AI Compute, Network Security Infrastructure, and Memory Architecture.  
 Developed by **Gin** ([@gin_cryptodiary](https://x.com/gin_cryptodiary) / **INFJcrypto**).
 
 ---
 
-## Executive Overview
+## Architecture Design Rationale: Single Unified Portfolio vs Micro-Repos
 
-The INFJ AI portfolio provides production-tested blueprints, scripts, and operational standards for building sovereign, high-performance AI agent environments. Designed for B2B client deployments, edge appliances, and masterclass instruction at INFJcrypto.com.
+Maintaining a **single unified repository (`saturninfj/infj-ai`)** is superior to creating fragmented sub-repositories. It provides:
+1. **Single Source of Truth:** Clients and students reference one master repository instead of managing multiple decoupled repositories.
+2. **Sequential 3-Phase Guided Deployment:** Installation is structured in strict logical order (Security -> Memory OS -> Agent Skills).
+3. **Master Interactive Orchestrator:** A single 1-line command launches an interactive menu to deploy Phase 1, Phase 2, or the entire stack.
 
 ---
 
-## Deployment Quickstarts
+## ⚡ Master 1-Line Setup
 
-### Module 1: Agentic Brain Stack Installation
-Deploy standard directory hierarchy, YAML metadata templates, SOPs, and version control:
+Run this command on the target system (macOS / Linux / WSL) to launch the guided interactive installer:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/saturninfj/infj-ai/main/install-brain.sh | bash
+curl -fsSL https://raw.githubusercontent.com/saturninfj/infj-ai/main/setup.sh | bash
 ```
 
-### Module 2: Network Security Layer Installation
-Deploy 4-layer network shield, NextDNS DoH (Profile 2161aa) primary resolution, and local Unbound recursive fallback:
+---
 
+## 🗺️ Sequential 3-Phase Guided Roadmap
+
+```text
++-----------------------------------------------------------------------+
+|  PHASE 1: NETWORK SECURITY LAYER & GATEWAY SHIELD                     |
+|  (Tailscale WireGuard + Pi-hole + NextDNS 2161aa + Unbound Fallback)  |
++-----------------------------------v-----------------------------------+
+                                    |
++-----------------------------------v-----------------------------------+
+|  PHASE 2: AGENTIC BRAIN VAULT & MEMORY OS                             |
+|  (Directory Hierarchy + YAML Metadata Standards + GBrain Indexing)    |
++-----------------------------------v-----------------------------------+
+                                    |
++-----------------------------------v-----------------------------------+
+|  PHASE 3: AGENTIC EXECUTION & RAG CITATIONS                           |
+|  (Citations API + Files API + Anti-Hallucination SOP Rules)           |
++-----------------------------------------------------------------------+
+```
+
+---
+
+### PHASE 1: Network Security Layer & Gateway Shield
+
+Before initializing data or running AI agents, the host system MUST be secured at the network layer.
+
+#### Direct Script Execution
 ```bash
 curl -fsSL https://raw.githubusercontent.com/saturninfj/infj-ai/main/install-security.sh | bash
 ```
 
----
-
-## Portfolio Build 01: Agentic Brain Stack Framework
-
-### Problem Statement
-Standard unorganized documents cause context drift, session memory loss, and hallucinations when consumed by LLM agents. Flat text without structured metadata forces agents to execute expensive, unfocused semantic scans across thousands of files.
-
-### 4-Tier Architecture
-
+#### Technical Specifications
 ```text
-+--------------------------------------------------------+
-|                   AI Agent Interface                   |
-|   (Skills: vault-save, citations-api, vault-files-api)  |
-+---------------------------+----------------------------+
-                            |
-+---------------------------v----------------------------+
-|              GBrain Hybrid Search Engine               |
-|   (SQLite FTS5 + Wikilinks + Metadata Indexing)        |
-+---------------------------+----------------------------+
-                            |
-+---------------------------v----------------------------+
-|            Obsidian Vault (Data Repository)            |
-|   (Brain/, Projects/, Reference/, Daily/, Memory/)     |
-+---------------------------+----------------------------+
-                            |
-+---------------------------v----------------------------+
-|            Sovereign Air-Gapped File System            |
-|       (100% Data Ownership, Zero External Leaks)       |
-+--------------------------------------------------------+
+Client Node (Mac Mini / Phone / Tablet / Edge Compute)
+  |--> Layer 1: Zero-Trust WireGuard Mesh (Tailscale 100.x.x.x)
+        |--> Layer 2: Network-Level Sinkhole (Pi-hole Port 53 -> 0.0.0.0)
+              |--> Layer 3: Encrypted DoH & Fast Fallback (dnsproxy Port 5053)
+                    Primary: NextDNS Profile 2161aa DoH
+                    Fallback: Local Unbound Recursive Resolver (127.0.0.1:5335)
+                    |--> Layer 4: Commercial Egress Tunnel (Surfshark WireGuard Table 200)
 ```
 
-### Standard Directory Hierarchy
+1. **Primary Upstream:** NextDNS Profile `2161aa` over TLS/DoH for security filtering and telemetry blocking.
+2. **Fallback Resolver:** Local Unbound recursive root resolver (`127.0.0.1:5335`). Automatically handles queries if NextDNS experiences latency or network failure.
+3. **Egress Isolation:** Policy routing via Table 200 isolates commercial VPN egress (Singapore / Indonesia) from Tailscale intranet routing (Table 52).
 
+---
+
+### PHASE 2: Agentic Brain Vault & Memory OS
+
+Once the host network is hardened, initialize the structured memory architecture.
+
+#### Direct Script Execution
+```bash
+curl -fsSL https://raw.githubusercontent.com/saturninfj/infj-ai/main/install-brain.sh | bash
+```
+
+#### Directory Hierarchy
 ```text
 ~/vault/
 ├── Brain/                         # System architecture, SOPs, and handoffs
@@ -72,9 +93,8 @@ Standard unorganized documents cause context drift, session memory loss, and hal
 └── Daily/                         # Execution logs and transcripts
 ```
 
-### Metadata Standard (YAML Frontmatter)
-
-Every markdown document MUST include structured frontmatter for sitemapping:
+#### Metadata Standard (YAML Frontmatter)
+Every markdown document MUST include structured frontmatter for LLM sitemapping:
 
 ```yaml
 ---
@@ -83,7 +103,7 @@ title: "Document Title"
 name: "kebab-case-slug"
 metadata:
   type: project
-  modified: '2026-08-20T15:00:00.000Z'
+  modified: '2026-08-20T15:40:00.000Z'
   node_type: memory
 description: >-
   Concise 1-3 line summary of document purpose and current status.
@@ -92,25 +112,21 @@ description: >-
 
 ---
 
-## Portfolio Build 02: Network Security Layer & Gateway Shield
+### PHASE 3: Agentic Execution & RAG Citations
 
-### Architectural Pipeline
-The security gateway enforces a 4-layer defense pipeline on all outbound traffic:
+Connect search indexing and citation tools to enforce non-hallucinated AI workflows.
 
-```text
-Client Node (Mac Mini / Phone / Tablet / Edge Compute)
-  |--> Layer 1: Zero-Trust WireGuard Mesh (Tailscale 100.x.x.x)
-        |--> Layer 2: Network-Level Sinkhole (Pi-hole Port 53 -> 0.0.0.0)
-              |--> Layer 3: Encrypted DoH & Fast Fallback (dnsproxy Port 5053)
-                    Primary: NextDNS Profile 2161aa DoH
-                    Fallback: Local Unbound Recursive Resolver (127.0.0.1:5335)
-                    |--> Layer 4: Commercial Egress Tunnel (Surfshark WireGuard Table 200)
+#### Golden Rules of Agentic Execution
+1. **Search First (Anti-Hallucination):** Search local vault memory before generating content.
+2. **Structured Frontmatter (Anti-Drift):** Maintain YAML frontmatter headers on all generated files.
+3. **Strict Citation:** Reference exact file paths and line ranges (`file:///path/to/file#L10-L25`).
+
+#### FTS5 Index Setup
+```bash
+bun install -g gbrain
+gbrain config set vault_path "$HOME/vault"
+gbrain sync --all --no-embed
 ```
-
-### Key Technical Specifications
-1. **Primary Upstream:** NextDNS Profile `2161aa` over TLS/DoH for security filtering, ad-blocking, and telemetry sinkholing.
-2. **Fallback Resolver:** Local Unbound recursive root resolver (`127.0.0.1:5335`) on Debian 13. Automatically handles queries if NextDNS experiences latency or network degradation.
-3. **Egress Isolation:** Policy routing via Table 200 separates commercial VPN egress (Singapore / Indonesia) from Tailscale intranet routing (Table 52) and local subnet traffic.
 
 ---
 
