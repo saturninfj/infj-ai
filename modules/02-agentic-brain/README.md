@@ -1,48 +1,44 @@
-# Module 02: Agentic Brain Vault & Memory OS
+# Module 02: Digital Filing Cabinet (Agentic Brain Memory OS)
 
-This module establishes the sovereign memory architecture, frontmatter metadata rules, directory hierarchy, and FTS5 search indexing for AI agents.
+Step 2 creates an organized folder system on your computer (`~/vault`) so your AI assistant can store, search, and retrieve information with zero hallucinations.
 
 ---
 
-## Vault Directory Hierarchy
+## Your Clean Folder Structure
+
+All your notes and project files live inside `~/vault` organized into 5 clean folders:
 
 ```text
 ~/vault/
-├── Brain/                         # System architecture, SOPs, and handoffs
-│   ├── Architecture/              # System & hardware specifications
-│   ├── Handoffs/                   # Cross-agent state registry
-│   └── SOPs/                      # Standard operating procedures
-├── Memory/                        # Persistent single source of truth (mem-*.md)
-├── Projects/                      # Active project operational files
-├── Research/                      # Grounding data and market intelligence
-└── Daily/                         # Execution logs and transcripts
+├── Brain/         # System rules, guidelines, and handoff notes
+├── Memory/        # Permanent reference notes (your single source of truth)
+├── Projects/      # Active projects you are working on right now
+├── Research/      # Articles, web scrapes, and market research
+└── Daily/         # Daily work logs and execution transcripts
 ```
 
 ---
 
-## YAML Frontmatter Metadata Standard
+## Smart Summary Headers
 
-Every markdown document MUST include structured frontmatter:
+Every file includes a short summary header at the top:
 
 ```yaml
 ---
-type: concept | project | reference | sop
-title: "Document Title"
-name: "kebab-case-slug"
-metadata:
-  type: project
-  modified: '2026-08-20T15:45:00.000Z'
-  node_type: memory
-description: >-
-  Concise 1-3 line summary of document purpose and current status.
+type: project
+title: "Project Name"
+name: "project-name"
+description: "A short 1-3 line explanation of what this file contains."
 ---
 ```
 
+When you ask your AI assistant a question, it quickly reads these summary headers first to find the right file in seconds.
+
 ---
 
-## Installation
+## Quick Installation Command
 
-Run the module installer directly:
+Open your **Terminal** app, paste this line, and press Enter:
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/saturninfj/infj-ai/main/modules/02-agentic-brain/install.sh | bash

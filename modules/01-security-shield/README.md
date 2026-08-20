@@ -1,34 +1,31 @@
-# Module 01: Network Security Layer & Gateway Shield
+# Module 01: Digital Bodyguard (Network Security Layer)
 
-This module hardens the host and local network before running AI agents or consuming remote web services.
+Step 1 of the INFJ AI system protects your computer and network before you run AI assistants or connect to online web services.
 
 ---
 
-## Architecture Overview
+## What Does This Module Do?
+
+Think of Module 01 as a private security guard for your internet connection.
 
 ```text
-Client Node (Mac Mini / Phone / Tablet / Edge Compute)
-  |--> Layer 1: Zero-Trust WireGuard Mesh (Tailscale 100.x.x.x)
-        |--> Layer 2: Network-Level Sinkhole (Pi-hole Port 53 -> 0.0.0.0)
-              |--> Layer 3: Encrypted DoH & Fast Fallback (dnsproxy Port 5053)
-                    Primary: NextDNS Profile 2161aa DoH
-                    Fallback: Local Unbound Recursive Resolver (127.0.0.1:5335)
-                    |--> Layer 4: Commercial Egress Tunnel (Surfshark WireGuard Table 200)
+Your Computer / Phone / Tablet
+  |--> Step 1: Private Encrypted Tunnel (Tailscale)
+        |--> Step 2: Ad & Tracker Blocker (Pi-hole)
+              |--> Step 3: Encrypted Web Lookup (NextDNS DoH Profile 2161aa)
+                    Fallback: Fast Local Resolver (Unbound 127.0.0.1:5335)
+                    |--> Step 4: Outbound Protection (Surfshark VPN)
 ```
 
----
-
-## Key Features
-
-1. **NextDNS DoH (Profile 2161aa):** Primary encrypted DNS resolution with cloud ad-blocking and security filtering.
-2. **Local Unbound Fallback (`127.0.0.1:5335`):** Recursive root DNS resolver acting as an instant, zero-latency fallback if NextDNS is unavailable.
-3. **Egress Isolation:** Policy routing via Table 200 isolates commercial VPN egress from internal Tailnet routing (Table 52).
+1. **Blocks Intrusive Ads:** Filters out ad servers and unwanted tracking scripts automatically.
+2. **Hides Your Web Activity:** Encrypts your DNS lookups using NextDNS (Profile 2161aa) so internet providers cannot log your browsing history.
+3. **Zero-Downtime Backup:** If the primary encrypted DNS server slows down, your system automatically switches to a local backup resolver (`127.0.0.1:5335`) so your connection never drops.
 
 ---
 
-## Installation
+## Quick Installation Command
 
-Run the module installer directly:
+Open your **Terminal** app, paste this line, and press Enter:
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/saturninfj/infj-ai/main/modules/01-security-shield/install.sh | bash
