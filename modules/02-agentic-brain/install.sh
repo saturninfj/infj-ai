@@ -81,7 +81,16 @@ EOF
 
 # 4. Version Control Setup
 if [ ! -d "${VAULT_DIR}/.git" ]; then
-    (cd "${VAULT_DIR}" && git init && git add . && git commit -m "feat(brain): initialize agentic brain stack")
+    (
+        cd "${VAULT_DIR}" && git init
+        if ! git config user.name >/dev/null 2>&1; then
+            git config user.name "Client User"
+        fi
+        if ! git config user.email >/dev/null 2>&1; then
+            git config user.email "client@local.vault"
+        fi
+        git add . && git commit -m "feat(brain): initialize agentic brain stack"
+    )
     echo "[INFJ AI] Git repository initialized."
 else
     echo "[INFJ AI] Git repository already present."
