@@ -48,10 +48,31 @@ EOF
 
 sudo unbound-checkconf
 sudo systemctl restart unbound
+echo "[INFJ AI] Unbound service active on port 5335."
 
-# 3. Configure dnsproxy service with NextDNS Primary & Unbound Fallback
-if [ -f /usr/local/bin/dnsproxy ]; then
-    sudo tee /etc/systemd/system/dnsproxy.service > /dev/null << EOF
+# 3. Install dnsproxy binary if missing
+if [ ! -f /usr/local/bin/dnsproxy ]; then
+    echo "[INFJ AI] Downloading and installing AdGuard dnsproxy binary..."
+    ARCH="$(uname -m)"
+    if [ "$ARCH" = "x86_64" ]; then
+        DNSPROXY_ARCH="amd64"
+    elif [ "$ARCH" = "aarch64" ]; then
+        DNSPROXY_ARCH="arm64"
+    else
+        DNSPROXY_ARCH="amd64"
+    fi
+    
+    TMP_DIR="$(mktemp -d)"
+    curl -fsSL "https://github.com/AdguardTeam/dnsproxy/releases/download/v0.73.0/dnsproxy-linux-${DNSPROXY_ARCH}-v0.73.0.tar.gz" -o "${TMP_DIR}/dnsproxy.tar.gz"
+    tar -xzf "${TMP_DIR}/dnsproxy.tar.gz" -C "${TMP_DIR}"
+    sudo cp "${TMP_DIR}/linux-${DNSPROXY_ARCH}/dnsproxy" /usr/local/bin/dnsproxy
+    sudo chmod +x /usr/local/bin/dnsproxy
+    rm -rf "${TMP_DIR}"
+    echo "[INFJ AI] dnsproxy binary installed to /usr/local/bin/dnsproxy."
+fi
+
+# 4. Configure systemd service for dnsproxy
+sudo tee /etc/systemd/system/dnsproxy.service > /dev/null << EOF
 [Unit]
 Description=AdGuard dnsproxy (DoH to NextDNS ${NEXTDNS_PROFILE} with Unbound Fallback)
 After=network-online.target unbound.service
@@ -68,9 +89,9 @@ User=root
 WantedBy=multi-user.target
 EOF
 
-    sudo systemctl daemon-reload
-    sudo systemctl restart dnsproxy
-    echo "[INFJ AI] dnsproxy reconfigured and restarted."
-fi
+sudo systemctl daemon-reload
+sudo systemctl enable --now dnsproxy
+sudo systemctl restart dnsproxy
+echo "[INFJ AI] dnsproxy service configured and active on port 5053."
 
 echo "[INFJ AI] Network Security Layer configuration complete."
